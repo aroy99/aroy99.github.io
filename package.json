@@ -1,0 +1,17 @@
+{
+  "name": "hackru-spring2019",
+  "version": "1.0.0",
+  "description": "",
+  "main": "spotify.js",
+  "dependencies": {
+    "browserfy": "^1.0.0",
+    "browserify": "^16.2.3",
+    "gemoji": "^4.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
