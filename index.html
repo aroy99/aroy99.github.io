@@ -3,26 +3,73 @@
     <head>
 	<script src="testbundle.js"></script>
 	<script>
-	function parse() {
-	var string = document.getElementById("box").value;
-	console.log(string)
-	
-	var url = "https://open.spotify.com/search/results/";
-	try {
-		var names = gemoji.unicode[string].names;
-		console.log(names);
-		url += names[0].replace(/_/g, ' ');
-		 for (var i = 1; i < names.length; i++) {
-			url += "%20OR%20" + names[i].replace(/_/g, ' '); 
+	function stringToArray(s) {
+		const retVal = [];
+	  
+		for (const ch of s) {
+			retVal.push(ch);
 		}
- 
-		window.open(url);
+  
+		return retVal;
 	}
-	catch(error) {
-		console.error(error);
 	
-	}
-	return;
+	function parse() {
+		var string = document.getElementById("box").value;
+		console.log("string: " + string);
+		var arr = stringToArray(string);
+		console.log("array: " + arr);
+		var used = []
+		
+		var url = "https://open.spotify.com/search/results/";
+		var checkpoint = false; 
+		
+			for(var i = 0; i < arr.length; i++){
+				try {
+					var c = arr[i];
+					var names = gemoji.unicode[c].names;
+					if(i == 0){
+						url += names[0].replace(/_/g, ' ');
+						used.push(names[0]);
+					}else {
+						if(!used.includes(names[0])){
+							url += "%20OR%20" + names[0].replace(/_/g, ' ');
+							used.push(names[0]);
+						}
+					}
+					 for (var j = 1; j < names.length; j++) {
+						if(!used.includes(names[j])){
+							url += "%20OR%20" + names[j].replace(/_/g, ' '); 
+							used.push(names[j]);
+						}
+					}
+					if(gemoji.unicode[c].tags != null){
+						var tags = gemoji.unicode[c].tags
+						for (var j = 0; j < tags.length; j++) {
+							if(!used.includes(tags[j])){
+								url += "%20OR%20" + tags[j].replace(/_/g, ' '); 
+								used.push(tags[j]);
+							}
+						}
+					}
+					
+					console.log(i + ", curr url: " + url);
+				}
+				catch(error) {
+					alert("Sorry, I couldn't find the emoji " + c + "!");
+					console.error(error);
+					continue;
+				}
+				
+				checkpoint = true;
+
+			}
+			
+			console.log("url: " + url);
+			
+			if (checkpoint){
+				window.open(url);
+			}
+		return;
 	}
 	</script>
     <meta charset="utf-8" name = "viewport" content = "width = device-width, initial-scale = 1">
@@ -79,10 +126,6 @@
     </head>
     
     <body background="emoji-2762568__340.png">
-	<script>
-		parse();
-	</script>
-	
         <table style="background-color:white; font-size:60px"; align="center">
             <tr>
                 <th>
