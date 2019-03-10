@@ -13,5 +13,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aroy99/spotify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aroy99/spotify/issues"
+  },
+  "homepage": "https://github.com/aroy99/spotify#readme"
 }

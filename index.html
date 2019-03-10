@@ -1,8 +1,31 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<script type="text/javascript" src="bundle.js"></script>
-    <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+	<script src="testbundle.js"></script>
+	<script>
+	function parse() {
+	var string = document.getElementById("box").value;
+	console.log(string)
+	
+	var url = "https://open.spotify.com/search/results/";
+	try {
+		var names = gemoji.unicode[string].names;
+		console.log(names);
+		url += names[0].replace(/_/g, ' ');
+		 for (var i = 1; i < names.length; i++) {
+			url += "%20OR%20" + names[i].replace(/_/g, ' '); 
+		}
+ 
+		window.open(url);
+	}
+	catch(error) {
+		console.error(error);
+	
+	}
+	return;
+	}
+	</script>
+    <meta charset="utf-8" name = "viewport" content = "width = device-width, initial-scale = 1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         
@@ -69,9 +92,10 @@
         </table>
         
         <div class = "searchengine">
-            <input type="text" placeholder="Type an Emoji" required>
+            <input type="text" placeholder="Type Emojis" id="box" required>
             <button type="submit"  onclick='parse()'> <i class = "fa fa-search"></i></button>
             
         </div>
     </body>
+
 </html>
