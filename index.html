@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+	<script type="text/javascript" src="bundle.js"></script>
     <meta name = "viewport" content = "width = device-width, initial-scale = 1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
@@ -55,6 +56,10 @@
     </head>
     
     <body background="emoji-2762568__340.png">
+	<script>
+		parse();
+	</script>
+	
         <table style="background-color:white; font-size:60px"; align="center">
             <tr>
                 <th>
@@ -65,7 +70,7 @@
         
         <div class = "searchengine">
             <input type="text" placeholder="Type an Emoji" required>
-            <button type="submit"> <i class = "fa fa-search"></i></button>
+            <button type="submit"  onclick='parse()'> <i class = "fa fa-search"></i></button>
             
         </div>
     </body>

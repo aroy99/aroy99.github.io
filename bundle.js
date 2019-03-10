@@ -12572,5 +12572,6 @@ function parse() {
 	for(i=0; i < string.length; i++){
 		console.log(gemoji.unicode[string.charAt(i)].names);
 	}
+	return;
 }
 },{"gemoji":2}]},{},[3]);
